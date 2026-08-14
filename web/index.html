@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>sentry-agent-harness</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <header>
+    <h1>sentry-agent-harness</h1>
+    <p class="subtitle">LangGraph agent + FastMCP tools, instrumented for Sentry AI Monitoring &amp; Seer</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Scenario deck</h2>
+      <div id="scenarios" class="toggle-grid"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Query</h2>
+      <form id="query-form">
+        <textarea id="goal" rows="3" placeholder="e.g. Look up Ada Lovelace's orders in the database"></textarea>
+        <button type="submit" id="run-btn">Run</button>
+      </form>
+    </section>
+
+    <section id="telemetry-bar" class="telemetry-bar hidden">
+      <span id="tel-latency">latency: —</span>
+      <span id="tel-tokens">tokens: —</span>
+      <span id="tel-iterations">iterations: —</span>
+      <a id="tel-trace" href="#" target="_blank" rel="noopener">View in Sentry →</a>
+    </section>
+
+    <section class="panel">
+      <h2>Result</h2>
+      <pre id="answer" class="answer">Run a query to see the agent's answer here.</pre>
+      <h3>Tool calls</h3>
+      <ol id="tool-calls"></ol>
+    </section>
+  </main>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
