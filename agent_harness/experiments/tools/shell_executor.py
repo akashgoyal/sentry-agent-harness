@@ -5,7 +5,7 @@ from __future__ import annotations
 import shlex
 import subprocess
 
-from agent_harness.tools.base import BaseTool
+from agent_harness.experiments.tools.base import BaseTool
 
 _ALLOWED_COMMANDS = {"git", "ls", "pwd", "echo", "cat", "wc", "date"}
 

@@ -11,8 +11,8 @@ from dataclasses import asdict, dataclass
 from threading import Lock
 from typing import Any
 
-from agent_harness.config import Settings
-from agent_harness.telemetry.spans import breadcrumb
+from agent_harness.product.config import Settings
+from agent_harness.product.telemetry.spans import breadcrumb
 
 
 @dataclass

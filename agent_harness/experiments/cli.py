@@ -5,13 +5,13 @@ from __future__ import annotations
 import argparse
 import asyncio
 
-from agent_harness.agent.graph import AgentHarness
-from agent_harness.config import Settings, get_settings
-from agent_harness.llm.provider_factory import LLMProviderFactory
-from agent_harness.mcp.client import MCPToolProvider
-from agent_harness.scenarios.failure_engine import FailureEngine
-from agent_harness.telemetry.sentry_init import init_sentry
-from agent_harness.telemetry.spans import current_trace_id
+from agent_harness.experiments.agent.graph import AgentHarness
+from agent_harness.product.config import Settings, get_settings
+from agent_harness.product.llm.provider_factory import LLMProviderFactory
+from agent_harness.experiments.mcp.client import MCPToolProvider
+from agent_harness.experiments.scenarios.failure_engine import FailureEngine
+from agent_harness.product.telemetry.sentry_init import init_sentry
+from agent_harness.product.telemetry.spans import current_trace_id
 
 _SCENARIO_FLAGS = ("silent-truncation", "infinite-tool-loop", "mcp-schema-mismatch", "context-inflation")
 
@@ -83,7 +83,7 @@ def main() -> None:
     if args.command == "serve":
         import uvicorn
 
-        uvicorn.run("agent_harness.api.app:app", host=args.host, port=args.port, reload=args.reload)
+        uvicorn.run("agent_harness.experiments.api.app:app", host=args.host, port=args.port, reload=args.reload)
         return
 
     init_sentry(settings)

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import sentry_sdk
 
-from agent_harness.config import Settings
+from agent_harness.product.config import Settings
 
 
 def init_sentry(settings: Settings) -> None:

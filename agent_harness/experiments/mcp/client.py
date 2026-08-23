@@ -8,9 +8,9 @@ from langchain_core.tools import BaseTool as LangchainTool
 from langchain_core.tools import StructuredTool
 from langchain_mcp_adapters.client import MultiServerMCPClient
 
-from agent_harness.config import Settings
-from agent_harness.scenarios.failure_engine import FailureEngine
-from agent_harness.telemetry.spans import traced_step
+from agent_harness.product.config import Settings
+from agent_harness.experiments.scenarios.failure_engine import FailureEngine
+from agent_harness.product.telemetry.spans import traced_step
 
 _SERVER_NAME = "agent-harness-tools"
 
@@ -49,7 +49,7 @@ class MCPToolProvider:
         flags = self._failures.flags
         return {
             "command": "python",
-            "args": ["-m", "agent_harness.mcp.server"],
+            "args": ["-m", "agent_harness.experiments.mcp.server"],
             "transport": "stdio",
             "env": {"SCENARIO_SILENT_TRUNCATION": "1" if flags.silent_truncation else "0"},
         }

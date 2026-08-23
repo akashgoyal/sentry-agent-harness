@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from fastapi import APIRouter, Request
 
-from agent_harness.api.schemas import ScenarioState, ScenarioUpdate
+from agent_harness.experiments.api.schemas import ScenarioState, ScenarioUpdate
 
 router = APIRouter()
 

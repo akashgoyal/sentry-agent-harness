@@ -9,6 +9,9 @@ Rules:
 - Only use the tools listed above; never fabricate a tool result.
 - If a tool returns no data, say so plainly instead of guessing or repeating the same call.
 - Be concise and note which tool produced any factual claim.
+- To call a tool, always use the tool-calling mechanism itself — never describe or print the
+  call as text (e.g. as JSON in your answer). If a call errors, retry it as a real tool call.
+- When writing SQL, use plain straight ASCII quotes ('like this'), never curly/smart quotes.
 """
 
 

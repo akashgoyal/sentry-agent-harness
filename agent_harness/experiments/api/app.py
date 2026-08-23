@@ -8,13 +8,13 @@ from fastapi import FastAPI
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 
-from agent_harness.api.routes_agent import router as agent_router
-from agent_harness.api.routes_scenarios import router as scenarios_router
-from agent_harness.config import get_settings
-from agent_harness.scenarios.failure_engine import FailureEngine
-from agent_harness.telemetry.sentry_init import init_sentry
+from agent_harness.experiments.api.routes_agent import router as agent_router
+from agent_harness.experiments.api.routes_scenarios import router as scenarios_router
+from agent_harness.product.config import get_settings
+from agent_harness.experiments.scenarios.failure_engine import FailureEngine
+from agent_harness.product.telemetry.sentry_init import init_sentry
 
-_WEB_DIR = Path(__file__).resolve().parent.parent.parent / "web"
+_WEB_DIR = Path(__file__).resolve().parent.parent.parent.parent / "web"
 
 
 def create_app() -> FastAPI:

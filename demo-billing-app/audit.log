@@ -1,0 +1,53 @@
+2026-06-01T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-06-01T02:00:04Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-06-01T02:15:00Z INFO  cache       pricing-config cache refreshed ttl=3600s
+2026-06-02T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-06-02T02:00:03Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-06-03T09:12:44Z INFO  deploy      service=api-gateway version=4.12.1 sha=9a1c3e2
+2026-06-03T09:12:50Z INFO  healthcheck api-gateway status=healthy latency_ms=42
+2026-06-05T14:03:11Z INFO  cache       pricing-config cache refreshed ttl=3600s
+2026-06-08T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-06-08T02:00:05Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-06-10T11:22:07Z INFO  deploy      service=notifications version=2.3.0 sha=44bb210
+2026-06-10T11:22:15Z INFO  healthcheck notifications status=healthy latency_ms=18
+2026-06-12T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-06-12T02:00:02Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-06-15T16:40:33Z INFO  cache       pricing-config cache refreshed ttl=3600s
+2026-06-18T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-06-18T02:00:03Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-06-20T08:55:19Z INFO  deploy      service=support-portal version=1.9.4 sha=7712fca
+2026-06-20T08:55:26Z INFO  healthcheck support-portal status=healthy latency_ms=61
+2026-06-22T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-06-22T02:00:04Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-06-25T13:18:52Z INFO  cache       pricing-config cache refreshed ttl=3600s
+2026-06-28T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-06-28T02:00:02Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-06-29T19:04:07Z INFO  deploy      service=api-gateway version=4.13.0 sha=1fe6dd8
+2026-06-29T19:04:15Z INFO  healthcheck api-gateway status=healthy latency_ms=39
+2026-06-30T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-06-30T02:00:03Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-06-30T23:58:02Z INFO  billing     period-close period=2026-06 invoices_generated=3
+2026-07-01T00:03:10Z WARN  deploy      service=billing-engine version=2.0.0 sha=c81f4a0 changelog="tax now computed on subtotal to match payment-processor merchant statement rounding; discount applied after tax"
+2026-07-01T00:03:18Z INFO  healthcheck billing-engine status=healthy latency_ms=27
+2026-07-01T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-07-01T02:00:04Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-07-03T10:47:29Z INFO  cache       pricing-config cache refreshed ttl=3600s
+2026-07-06T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-07-06T02:00:02Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-07-09T15:31:44Z INFO  deploy      service=notifications version=2.3.1 sha=88a02de
+2026-07-09T15:31:52Z INFO  healthcheck notifications status=healthy latency_ms=21
+2026-07-12T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-07-12T02:00:03Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-07-15T09:02:18Z INFO  cache       pricing-config cache refreshed ttl=3600s
+2026-07-18T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-07-18T02:00:02Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-07-20T12:14:56Z INFO  deploy      service=api-gateway version=4.13.1 sha=3d90b7c
+2026-07-20T12:15:03Z INFO  healthcheck api-gateway status=healthy latency_ms=44
+2026-07-22T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-07-22T02:00:04Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-07-25T17:09:37Z INFO  cache       pricing-config cache refreshed ttl=3600s
+2026-07-28T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-07-28T02:00:03Z INFO  scheduler   nightly-reconcile job completed ok=true
+2026-07-31T23:58:04Z INFO  billing     period-close period=2026-07 invoices_generated=3
+2026-08-01T02:00:01Z INFO  scheduler   nightly-reconcile job started
+2026-08-01T02:00:02Z INFO  scheduler   nightly-reconcile job completed ok=true

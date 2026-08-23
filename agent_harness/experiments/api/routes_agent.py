@@ -6,11 +6,11 @@ import uuid
 
 from fastapi import APIRouter, Request
 
-from agent_harness.agent.graph import AgentHarness
-from agent_harness.api.schemas import QueryRequest, QueryResponse, ToolCallRecord
-from agent_harness.llm.provider_factory import LLMProviderFactory
-from agent_harness.mcp.client import MCPToolProvider
-from agent_harness.telemetry.spans import current_trace_id
+from agent_harness.experiments.agent.graph import AgentHarness
+from agent_harness.experiments.api.schemas import QueryRequest, QueryResponse, ToolCallRecord
+from agent_harness.product.llm.provider_factory import LLMProviderFactory
+from agent_harness.experiments.mcp.client import MCPToolProvider
+from agent_harness.product.telemetry.spans import current_trace_id
 
 router = APIRouter()
 

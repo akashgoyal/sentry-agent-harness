@@ -5,8 +5,8 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from typing import Any
 
-from agent_harness.scenarios.failure_engine import FailureEngine
-from agent_harness.telemetry.spans import traced_step
+from agent_harness.experiments.scenarios.failure_engine import FailureEngine
+from agent_harness.product.telemetry.spans import traced_step
 
 
 class BaseTool(ABC):

@@ -1,6 +1,6 @@
 """FastMCP server exposing the three demo tools over stdio or SSE.
 
-Run standalone for SSE: `python -m agent_harness.mcp.server`
+Run standalone for SSE: `python -m agent_harness.experiments.mcp.server`
 For stdio it is spawned as a subprocess by MCPToolProvider, one per client connection.
 """
 
@@ -10,11 +10,11 @@ import os
 
 from fastmcp import FastMCP
 
-from agent_harness.config import get_settings
-from agent_harness.scenarios.failure_engine import FailureEngine, ScenarioFlags
-from agent_harness.tools.database import DatabaseTool
-from agent_harness.tools.file_inspector import FileInspectorTool
-from agent_harness.tools.shell_executor import ShellExecutorTool
+from agent_harness.product.config import get_settings
+from agent_harness.experiments.scenarios.failure_engine import FailureEngine, ScenarioFlags
+from agent_harness.experiments.tools.database import DatabaseTool
+from agent_harness.experiments.tools.file_inspector import FileInspectorTool
+from agent_harness.experiments.tools.shell_executor import ShellExecutorTool
 
 settings = get_settings()
 
@@ -39,7 +39,14 @@ def read_file_contents(path: str) -> str:
 
 @mcp.tool()
 def query_database(query: str, limit: int = 100) -> str:
-    """Run a read-only SQL SELECT against the demo 'users'/'orders' tables, capped to 'limit' rows."""
+    """Run a read-only SQL SELECT against the demo SQLite database, capped to 'limit' rows.
+
+    Schema:
+      users(id INTEGER, name TEXT, email TEXT, plan TEXT)
+      orders(id INTEGER, user_id INTEGER REFERENCES users(id), item TEXT, amount_usd REAL, status TEXT)
+      invoices(id TEXT, user_id INTEGER REFERENCES users(id), period TEXT, subtotal_usd REAL,
+               discount_usd REAL, tax_usd REAL, charged_usd REAL)
+    """
     return _db_tool.execute(query=query, limit=limit)
 
 

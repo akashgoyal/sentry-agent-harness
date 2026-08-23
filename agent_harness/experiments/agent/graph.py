@@ -16,10 +16,10 @@ from langchain_core.tools import BaseTool as LangchainTool
 from langgraph.graph import END, StateGraph
 from langgraph.graph.message import add_messages
 
-from agent_harness.agent.prompts import SystemPromptRegistry
-from agent_harness.config import Settings
-from agent_harness.scenarios.failure_engine import FailureEngine
-from agent_harness.telemetry.spans import breadcrumb, traced_step
+from agent_harness.experiments.agent.prompts import SystemPromptRegistry
+from agent_harness.product.config import Settings
+from agent_harness.experiments.scenarios.failure_engine import FailureEngine
+from agent_harness.product.telemetry.spans import breadcrumb, traced_step
 
 
 def _stringify_tool_output(value: Any) -> str:
@@ -84,9 +84,11 @@ class AgentHarness:
         graph = StateGraph(AgentState)
         graph.add_node("agent", self._call_model)
         graph.add_node("tools", self._execute_tools)
+        graph.add_node("nudge", self._nudge_retry)
         graph.set_entry_point("agent")
-        graph.add_conditional_edges("agent", self._should_continue, {"tools": "tools", "end": END})
+        graph.add_conditional_edges("agent", self._should_continue, {"tools": "tools", "nudge": "nudge", "end": END})
         graph.add_edge("tools", "agent")
+        graph.add_edge("nudge", "agent")
         return graph.compile()
 
     async def run(self, goal: str, session_id: str) -> AgentResult:
@@ -172,16 +174,25 @@ class AgentHarness:
             return "end"
 
         last = state["messages"][-1]
-        if not getattr(last, "tool_calls", None):
-            return "end"
+        has_tool_calls = bool(getattr(last, "tool_calls", None))
 
-        # Infinite Tool Loop Mode: normally an empty tool result ends the loop; the scenario
-        # disables that boundary so the agent keeps reformulating until the safety cap above.
-        if state["last_tool_empty"] and not self._failures.bypass_empty_result_stop(True):
+        # Infinite Tool Loop Mode: normally an empty tool result ends the loop — even overriding
+        # the model's own choice to give up. The scenario disables that boundary and forces
+        # another reasoning pass (nudging a reformulation if the model didn't request a tool
+        # call on its own) until the safety cap above.
+        if state["last_tool_empty"] and self._failures.bypass_empty_result_stop(True):
+            return "tools" if has_tool_calls else "nudge"
+
+        if not has_tool_calls or state["last_tool_empty"]:
             breadcrumb("agent.loop", "stopping: last tool call returned no data", iterations=iterations)
             return "end"
 
         return "tools"
+
+    async def _nudge_retry(self, state: AgentState) -> dict[str, Any]:
+        breadcrumb("scenario.infinite_tool_loop", "forcing reformulation after empty result", iterations=state["iterations"])
+        nudge = HumanMessage(content="That returned no data. Try a different query to find the information.")
+        return {"messages": [nudge]}
 
     def _trim(self, messages: list[BaseMessage]) -> list[BaseMessage]:
         """Bound context growth: keep the system message + last N turns, cap tool output size."""

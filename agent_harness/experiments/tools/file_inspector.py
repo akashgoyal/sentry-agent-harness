@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from agent_harness.scenarios.failure_engine import FailureEngine
-from agent_harness.tools.base import BaseTool
+from agent_harness.experiments.scenarios.failure_engine import FailureEngine
+from agent_harness.experiments.tools.base import BaseTool
 
 
 class FileInspectorTool(BaseTool):
